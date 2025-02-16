@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Existing Patient Form</title>
+</head>
+<body>
+    <h1>Existing Patient Form</h1>
+    <form action="{{ url_for('add_visit') }}" method="post">
+        <label for="patient_id">Patient ID:</label>
+        <input type="number" id="patient_id" name="patient_id" required><br><br>
+
+        <label for="visit_number">Visit Number:</label>
+        <input type="number" id="visit_number" name="visit_number" required><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br><br>
+
+        <label for="doses">Doses:</label>
+        <input type="number" id="doses" name="doses" required><br><br>
+
+        <h3>Results:</h3>
+        <label for="blood_pressure">Blood Pressure:</label>
+        <input type="text" id="blood_pressure" name="blood_pressure" required><br><br>
+
+        <label for="body_temperature">Body Temperature:</label>
+        <input type="number" id="body_temperature" name="body_temperature" step="0.1" required><br><br>
+
+        <label for="sugar">Sugar:</label>
+        <input type="number" id="sugar" name="sugar" required><br><br>
+
+        <h3>Symptoms:</h3>
+        <input type="checkbox" id="diarrhea" name="diarrhea">
+        <label for="diarrhea">Diarrhea</label><br>
+
+        <input type="checkbox" id="headache" name="headache">
+        <label for="headache">Headache</label><br>
+
+        <input type="checkbox" id="rashes" name="rashes">
+        <label for="rashes">Rashes</label><br><br>
+
+        <input type="submit" value="Add Visit">
+    </form>
+    <a href="{{ url_for('index') }}"><button>Back to Dashboard</button></a>
+</body>
+</html>
