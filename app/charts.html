@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Charts</h1>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="successFailChart"></canvas>
+        <canvas id="symptomsChart"></canvas>
+        <canvas id="dosesImpactChart"></canvas>
+    </div>
+    <a href="{{ url_for('index') }}"><button>Back to Dashboard</button></a>
+
+    <script>
+        // Pie chart for success/fail
+        new Chart(document.getElementById('successFailChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Success', 'Fail'],
+                datasets: [{
+                    data: {{ success_fail_data | tojson }},
+                    backgroundColor: ['#36A2EB', '#FF6384']
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Success vs Fail (Last Visit)'
+                }
+            }
+        });
+
+        // Bar chart for symptoms
+        new Chart(document.getElementById('symptomsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Diarrhea', 'Headache', 'Rashes'],
+                datasets: [{
+                    label: 'Symptoms',
+                    data: {{ symptoms_data | tojson }},
+                    backgroundColor: '#4BC0C0'
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Symptoms Distribution (Last Visit)'
+                }
+            }
+        });
+
+        // Line chart for doses impact
+        new Chart(document.getElementById('dosesImpactChart'), {
+            type: 'line',
+            data: {
+                labels: {{ doses_labels | tojson }},
+                datasets: [{
+                    label: 'Success Rate',
+                    data: {{ doses_impact_data | tojson }},
+                    borderColor: '#36A2EB',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Doses Impact on Success Rate'
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Doses'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Success Rate'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
