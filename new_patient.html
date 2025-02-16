@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Patient Form</title>
+</head>
+<body>
+    <h1>New Patient Form</h1>
+    <form action="{{ url_for('add_patient') }}" method="post">
+        <label for="id">Patient ID:</label>
+        <input type="number" id="id" name="id" required><br><br>
+
+        <label for="birth_year">Birth Year:</label>
+        <input type="number" id="birth_year" name="birth_year" required><br><br>
+
+        <label for="hospital">Hospital:</label>
+        <input type="text" id="hospital" name="hospital" required><br><br>
+
+        <label for="site_id">Site ID:</label>
+        <input type="text" id="site_id" name="site_id" required><br><br>
+
+        <input type="submit" value="Add Patient">
+    </form>
+    <a href="{{ url_for('index') }}"><button>Back to Dashboard</button></a>
+</body>
+</html>
